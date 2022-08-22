@@ -1,10 +1,11 @@
 function threeSixNine(n){
     if(n % 9 == 0){
-        console.log('박수x2')
+        console.log('박수x2');
     }
     else if(n % 3 == 0){
         console.log('박수');
-    }else{
+    }
+    else{
         console.log('통과');
     }
 }

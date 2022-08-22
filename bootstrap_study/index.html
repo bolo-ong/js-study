@@ -30,9 +30,11 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
           <span class="navbar-brand">Navbar</span>
+          <span class="badge bg-dark">Dark 🔄</span>
           <button class="navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
           </button>
+          
         </div>
       </nav> 
 
@@ -47,6 +49,8 @@
       <button class="modal-login-button">로그인</button>
 
       <script>
+
+        //로그인 팝업 경고창 생성
         document.getElementsByClassName('btn-primary')[0].addEventListener('click', 
         function(e){
           if (document.querySelectorAll('#email')[0].value === ''){
@@ -70,38 +74,60 @@
             document.querySelector('#pw-length-check').innerHTML = '6자 미만입니다'
             document.querySelector('#pw-length-check').style.color = 'red'
           }
-          
-            
         })
 
+        //네비바 메뉴탭 토글
         document.querySelectorAll('.navbar-toggler')[0].addEventListener('click' ,
         function(){
           document.querySelectorAll('.list-group')[0].classList.toggle('show');
         })
 
+        //네비바 메뉴탭 토글 애니메이션 추가
+        document.getElementsByClassName('navbar-toggler')[0].addEventListener('click', 
+        function(){
+          document.getElementsByClassName('list-group')[0].classList.toggle('show-list-group');
+        })
+
+        //로그인 모달
         document.querySelectorAll('.modal-login-button')[0].addEventListener('click', 
         function(){
           document.querySelectorAll('.black-bg')[0].classList.add('show-modal');
         })
-
         document.getElementById('close').addEventListener('click', 
         function(){
           document.getElementsByClassName('black-bg')[0].classList.remove('show-modal');
         })
 
-        document.getElementsByClassName('navbar-toggler')[0].addEventListener('click', 
+        // //다크모드 텍스트를 확인해서 변경하는 방법
+        // document.getElementsByClassName('badge bg-dark')[0].addEventListener('click',
+        // function(){
+        //   const darkMode = document.getElementsByClassName('badge bg-dark')[0].textContent
+        //   if(darkMode === 'Dark 🔄'){
+        //     document.getElementsByClassName('badge bg-dark')[0].innerHTML = 'Light 🔄'
+        //   }
+        //   else if(darkMode === 'Light 🔄'){
+        //     document.getElementsByClassName('badge bg-dark')[0].innerHTML = 'Dark 🔄'
+        //   }
+        // })
+
+        //다크모드 클릭 횟수를 확인해서 변경하는 방법
+        {let clickCount = 0;
+        document.getElementsByClassName('badge bg-dark')[0].addEventListener('click', 
         function(){
-          document.getElementsByClassName('list-group')[0].classList.toggle('show-list-group');
+          clickCount++;
         })
+        document.getElementsByClassName('badge bg-dark')[0].addEventListener('click', 
+        function(){
+          if(clickCount % 2){
+            document.getElementsByClassName('badge bg-dark')[0].innerHTML = 'Light 🔄'
+          }
+          else if(!(clickCount % 2)){
+            document.getElementsByClassName('badge bg-dark')[0].innerHTML = 'Dark 🔄'
+          }
+        })
+      }
+
       </script>
-
-
-
-
-
-
-
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
