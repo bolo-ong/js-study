@@ -10,6 +10,7 @@ function refillCoffee(first, count){
     else if(count == 2){
         console.log(Math.ceil(first + second + third));
     }
+
 }
 }
 
