@@ -27,16 +27,16 @@
         </div>
       </div>
 
-    <nav class="navbar navbar-light bg-light">
+      <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-          <span class="navbar-brand">Navbar</span>
+          <div class="navbar-brand-box"><span class="navbar-brand">Cat#</span></div>
           <span class="badge bg-dark">Dark 🔄</span>
           <button class="navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
           </button>
-          
         </div>
-      </nav> 
+      </nav>
+      <div class="flow-bar"></div>
 
       <ul class="list-group">
         <li class="list-group-item">An item</li>
@@ -47,9 +47,17 @@
       </ul> 
 
       <div class="main-bg">
-        <h4>Shirts on Sale</h4>
+        <h4>Cat on Sale</h4>
         <button class="modal-login-button">로그인</button>
       </div>
+
+
+      <div class="lorem" style="width: 100px; height: 100px; overflow-y: scroll;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In suscipit nibh dignissim, molestie eros sit amet, malesuada neque. Sed eget dui in ante ultricies porttitor aliquet semper erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </div>
+
+
+      <div style="height: 1000px;"></div>
 
       <div class="alert alert-danger">
         <span id="sale-time">5초 이내 구매시 사은품증정!</span>
@@ -69,59 +77,96 @@
         </div>
       </div>
 
-      <button class="slide-1">1</button>
-      <button class="slide-2">2</button>
-      <button class="slide-3">3</button>
-      <button class="slide-previous">이전</button>
-      <button class="slide-next">다음</button>
-
+      <div class ="slide-button">
+        <button class="slide-previous">이전</button>
+        <button class="slide-next">다음</button>
+        <button class="slide-1">1</button>
+        <button class="slide-2">2</button>
+        <button class="slide-3">3</button>
+      </div>
       <script>
+
+        //flow-bar 스크롤바만큼 진행도 보여주기
+        window.addEventListener('scroll', 
+        function(){
+
+          let htmlScrollTop = document.querySelector('html').scrollTop
+          let htmlClientHeight = document.querySelector('html').clientHeight
+          let htmlHeight = document.querySelector('html').scrollHeight
+          let htmlScrollTopPercent = ((htmlScrollTop + htmlClientHeight) / htmlHeight)*100
+          
+          document.querySelector('.flow-bar').style.width = htmlScrollTopPercent+'%'
+        })
+        
+        //로렘잇섬 스크롤 다 내리면 경고창 띄우기
+      {let divLorem = document.querySelector('.lorem')
+       let eventOn = false
+        divLorem.addEventListener('scroll', 
+        function(){
+          if(divLorem.scrollHeight - divLorem.scrollTop == divLorem.clientHeight && eventOn == false){
+            alert('End')
+            eventOn = true
+          }
+        })
+      }
+
+        //스크롤바 이동시 네비게이션바 텍스트 사이즈 변경
+        window.addEventListener('scroll', 
+        function(){
+          if(window.scrollY >= 100){
+            document.querySelector('.navbar-brand').style.fontSize = '20px'
+          }
+          else if(window.scrollY < 100){
+            document.querySelector('.navbar-brand').style.fontSize = '30px'
+          }
+        })
 
         //캐러셀
       {let slideContainer = document.querySelector('.slide-container')
+       let carouselNum = 0
 
         document.querySelector('.slide-1').addEventListener('click', 
         function(){
+          carouselNum = 0
           slideContainer.style.transform = 'translateX(0vw)'
         })
 
         document.querySelector('.slide-2').addEventListener('click', 
         function(){
+          carouselNum = 1
           slideContainer.style.transform = 'translateX(-100vw)'
         })
 
         document.querySelector('.slide-3').addEventListener('click', 
         function(){
+          carouselNum = 2
           slideContainer.style.transform = 'translateX(-200vw)'
         })
 
         document.querySelector('.slide-next').addEventListener('click', 
         function(){
-          if(slideContainer.style.transform == '' || slideContainer.style.transform == 'translateX(0vw)'){
-            slideContainer.style.transform = 'translateX(-100vw)'
+
+          let lastNum = parseInt(document.querySelector('.slide-button :last-child').textContent)
+
+          carouselNum++
+          if(carouselNum >= lastNum){
+            carouselNum = lastNum - 1
           }
-          else if(slideContainer.style.transform == 'translateX(-100vw)'){
-            slideContainer.style.transform = 'translateX(-200vw)'
+          else{slideContainer.style.transform = 'translateX(-' + carouselNum + '00vw)'
           }
-          else if(slideContainer.style.transform == 'translateX(-200vw)'){
-            slideContainer.style.transform = 'translateX(0vw)'
-          }  
         })
 
         document.querySelector('.slide-previous').addEventListener('click', 
         function(){
-          if(slideContainer.style.transform == '' || slideContainer.style.transform == 'translateX(0vw)'){
-            slideContainer.style.transform = 'translateX(-200vw)'
+          carouselNum--
+          if(carouselNum < 0){
+            carouselNum = 0
           }
-          else if(slideContainer.style.transform == 'translateX(-100vw)'){
-            slideContainer.style.transform = 'translateX(0vw)'
+          else{
+            slideContainer.style.transform = 'translateX(-' + carouselNum + '00vw)'
           }
-          else if(slideContainer.style.transform == 'translateX(-200vw)'){
-            slideContainer.style.transform = 'translateX(-100vw)'
-          }  
         })
       }
-
 
       //5초 카운트 다운  
       {let sec = 5

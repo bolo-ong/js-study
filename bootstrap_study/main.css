@@ -1,14 +1,19 @@
+:root{
+    scroll-behavior: auto;
+}
+
 
 .list-group{
     visibility: hidden;
     opacity: 0;
     transition: all 1s;
     padding-left: 0px;
-    position: absolute;
-    height: 0%;
+    position: fixed;
+    top:65px;
     right:10px;
-    
+    z-index: 6;
 }
+
 
 .black-bg {
     width : 100%;
@@ -20,39 +25,37 @@
     visibility: hidden;
     opacity: 0;
     transition: all 3s;
-  }
-
+}
   .white-bg {
     background: white;
     border-radius: 5px;
     padding: 30px;
-  } 
+}
+  .main-bg{
+    padding : 100px 20px;
+    background: lightgrey;
+} 
+
 
 .show-modal{
     height: 100%;
     visibility: visible;
     opacity: 1;
 }
-
 .show{
     display: block;
 }
-
 .show-list-group{
     visibility: visible;
     opacity: 1;
-    height: 100%;
 }
+
 
 #pw-length-check{
     opacity: 0.7;
     font-size: 12px;
 }
 
-.main-bg{
-    padding : 100px 20px;
-    background: lightgrey;
-}
 
 .modal-login-button{
     width: 80px;
@@ -64,22 +67,47 @@
     border:0px;
 }
 
+
 .cat{
     width: 350px;
     height: 350px;
 }
 
+
 .slide-container{
     width: 300vw;
     transition: ease-in-out 1s;
 }
-
 .slide-box{
     width: 100vw;
     float: left;
 }
-
 .slide-box img{
     width: 100%;
-    
+}
+
+
+.navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+}
+.navbar-brand{
+    font-size: 30px;
+    transition: ease-in-out 0.3s;
+}
+.navbar-brand-box{
+    width: 50px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+}
+
+.flow-bar{
+    height: 7px;
+    background-color: black;
+    position: fixed;
+    z-index: 4;
+    top:70px;
+    border-radius: 5px;
 }
