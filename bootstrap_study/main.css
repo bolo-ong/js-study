@@ -11,7 +11,7 @@
     position: fixed;
     top:65px;
     right:10px;
-    z-index: 6;
+    z-index: 2;
 }
 
 
@@ -20,18 +20,18 @@
     height : 0%;
     position : fixed;
     background : rgba(0,0,0,0.5);
-    z-index : 5;
+    z-index : 3;
     padding: 30px;
     visibility: hidden;
     opacity: 0;
-    transition: all 3s;
+    transition: all 1s;
 }
-  .white-bg {
+.white-bg {
     background: white;
     border-radius: 5px;
     padding: 30px;
 }
-  .main-bg{
+.main-bg{
     padding : 100px 20px;
     background: lightgrey;
 } 
@@ -90,7 +90,7 @@
 .navbar{
     position: fixed;
     width: 100%;
-    z-index: 5;
+    z-index: 1;
 }
 .navbar-brand{
     font-size: 30px;
@@ -107,7 +107,6 @@
     height: 7px;
     background-color: black;
     position: fixed;
-    z-index: 4;
     top:70px;
     border-radius: 5px;
 }

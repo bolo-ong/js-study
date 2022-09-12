@@ -16,13 +16,13 @@
           <form action="success.html">
             <div class="my-3">
               <input type="text" class="form-control" id="email">
-             </div>
-             <div class="my-3">
-               <input type="password" class="form-control" id="pw">
-               <P id="pw-length-check">6자 이상으로 입력하세요</P>
-             </div>
-             <button type="submit" class="btn btn-primary">전송</button>
-             <button type="button" class="btn btn-danger" id="close">닫기</button>
+            </div>
+            <div class="my-3">
+              <input type="password" class="form-control" id="pw">
+              <P id="pw-length-check">6자 이상으로 입력하세요</P>
+            </div>
+            <button type="submit" class="btn btn-primary">전송</button>
+            <button type="button" class="btn btn-danger" id="close">닫기</button>
           </form> 
         </div>
       </div>
@@ -86,6 +86,14 @@
       </div>
       <script>
 
+        //모달창 겁은배경 클릭 시 창닫기
+        document.querySelector('.black-bg').addEventListener('click', 
+        function(e){
+          if(e.target == e.currentTarget){
+            document.querySelector('.black-bg').classList.remove('show-modal')
+          }
+        })
+
         //flow-bar 스크롤바만큼 진행도 보여주기
         window.addEventListener('scroll', 
         function(){
@@ -100,7 +108,7 @@
         
         //로렘잇섬 스크롤 다 내리면 경고창 띄우기
       {let divLorem = document.querySelector('.lorem')
-       let eventOn = false
+        let eventOn = false
         divLorem.addEventListener('scroll', 
         function(){
           if(divLorem.scrollHeight - divLorem.scrollTop == divLorem.clientHeight && eventOn == false){
@@ -123,7 +131,7 @@
 
         //캐러셀
       {let slideContainer = document.querySelector('.slide-container')
-       let carouselNum = 0
+        let carouselNum = 0
 
         document.querySelector('.slide-1').addEventListener('click', 
         function(){
