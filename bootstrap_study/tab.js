@@ -21,7 +21,8 @@ function tabButtonAddClass(n){
         tabContentAll[n].classList.add('show')
     }
 
-document.querySelector('.list').addEventListener.apply('click', 
-function(){
-    
+document.querySelector('.list').addEventListener('click', 
+function(e){
+    tabButtonRemoveClass()
+    tabButtonAddClass(parseInt(e.target.dataset.id))
 })
