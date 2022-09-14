@@ -73,10 +73,23 @@
       </form>
 
       <script>
+        const template = document.createElement('option')
+        template.innerHTML = '바지'
+          document.querySelector('.form-select').appendChild(template)
+
         document.querySelector('.form-select').addEventListener('input', 
         function(e){
           const formSelectAll = document.querySelectorAll('.form-select')
           if(this.value == '셔츠'){
+            formSelectAll[1].innerHTML = 
+            `<option>95</option>
+            <option>100</option>
+            <option>105</option>`
+            formSelectAll[1].classList.remove('form-hide')
+          }else if(this.value == '바지'){
+            formSelectAll[1].innerHTML = 
+            `<option>28</option>
+            <option>30</option>`
             formSelectAll[1].classList.remove('form-hide')
           }else{
             formSelectAll[1].classList.add('form-hide')
