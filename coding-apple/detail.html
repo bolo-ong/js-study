@@ -66,29 +66,46 @@
           <option>셔츠</option>
         </select>
         <select class="form-select mt-2 form-hide">
-          <option>95</option>
-          <option>100</option>
-          <option>105</option>
         </select>
       </form>
+
+
+      <script>
+        //object for in 반복문
+        let obj = {name : 'kim', age : 20}
+        for(let key in obj){
+          console.log(1) // 1, 1
+	        console.log(key) // name, age
+	        console.log(obj[key]) // ‘kim’, 20
+        }
+      </script>
 
       <script>
         const template = '<option>바지</option>'
           document.querySelector('.form-select').insertAdjacentHTML('beforeend', template)
 
+          //array의 forEach반복문을 사용한 셔츠, 바지 사이즈표 show & hide
         document.querySelector('.form-select').addEventListener('input', 
         function(e){
           const formSelectAll = document.querySelectorAll('.form-select')
+          let pants = [28, 30, 32]
+          let shirts = [95, 100, 105]
+
           if(this.value == '셔츠'){
-            formSelectAll[1].innerHTML = 
-            `<option>95</option>
-            <option>100</option>
-            <option>105</option>`
+            formSelectAll[1].innerText = ''
+            shirts.forEach(function(data){
+              const el = document.createElement('option')
+              el.innerText = data
+              formSelectAll[1].append(el)
+            })
             formSelectAll[1].classList.remove('form-hide')
           }else if(this.value == '바지'){
-            formSelectAll[1].innerHTML = 
-            `<option>28</option>
-            <option>30</option>`
+            formSelectAll[1].innerText = ''
+            pants.forEach(function(data){
+              const el = document.createElement('option')
+              el.innerText = data
+              formSelectAll[1].append(el)
+            })
             formSelectAll[1].classList.remove('form-hide')
           }else{
             formSelectAll[1].classList.add('form-hide')
