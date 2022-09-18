@@ -9,32 +9,20 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="card-group container">
-        <div class="card">
-          <img src="https://via.placeholder.com/600">
-          <div class="card-body">
-            <h5>Card title</h5>
-            <p>가격 : </p>
-            <button class="btn btn-danger">주문하기</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://via.placeholder.com/600">
-          <div class="card-body">
+
+    <div class="container">
+      <div class="row">
+
+        <!-- 
+          <div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
             <h5>Card title</h5>
             <p>가격 : 70000</p>
-            <button class="btn btn-danger">주문하기</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://via.placeholder.com/600">
-          <div class="card-body">
-            <h5>Card title</h5>
-            <p>가격 : 70000</p>
-            <button class="btn btn-danger">주문하기</button>
-          </div>
-        </div>
+          </div> 
+        -->
+
       </div>
+    </div> 
       
       <script>
         var products = [
@@ -43,12 +31,61 @@
           { id : 2, price : 60000, title : 'Black Monastery' }
         ];
         
-        let theNumberOfCard = document.querySelectorAll('.card').length
-        for(i=0; i<theNumberOfCard; i++){
-            document.querySelectorAll('.card-body h5')[i].innerHTML = products[i]['title']
-            document.querySelectorAll('.card-body :nth-child(2)')[i].innerHTML = '가격 : ' + products[i]['price']
+        function moreItem(arr){
+          arr.forEach(function(data){
+          let tmp = document.createElement('div')
+
+          tmp.classList.add('col-sm-4')
+          tmp.innerHTML = 
+            `<img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${data['title']}</h5>
+            <p>${data['price']}</p>`
+            
+            document.querySelector('.row').append(tmp)
+        })
         }
-      </script> 
+        
+        moreItem(products)
+      </script>
+      
+
+      <div class="container">
+        <button class="btn btn-danger" id="more">더보기</button>
+      </div>
+
+      <script>
+      let clickCount = 0
+
+      document.querySelector('#more').addEventListener(
+        'click', function(){
+          clickCount++
+
+          if(clickCount == 1){
+            fetch('https://codingapple1.github.io/js/more1.json')
+            .then(res => res.json())
+            .then(data => {
+              moreItem(data)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+          }
+          else if(clickCount == 2){
+            document.querySelector('#more').classList.add('form-hide')
+            fetch('https://codingapple1.github.io/js/more2.json')
+            .then(res => res.json())
+            .then(data => {
+              moreItem(data)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+          }
+
+        })
+
+      </script>
+
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
