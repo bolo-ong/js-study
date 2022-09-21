@@ -71,10 +71,10 @@
 
         //상품 추가
         function moreItem(arr){
-          arr.forEach(function(data){
+          arr.forEach(function(data, i){
           let tmp = document.createElement('div')
 
-          tmp.classList.add('col-sm-4')
+          tmp.classList.add('col-sm-4', `item`)
           tmp.innerHTML = 
             `<img src="https://via.placeholder.com/600" class="w-100">
             <h5>${data['title']}</h5>
@@ -149,6 +149,37 @@
           }
         })
 
+
+        //buy버튼 클릭 시 장바구니에 추가하기
+        let classBuy = document.querySelectorAll('.buy')
+        let itemDataArr = []
+
+        for(i=0; i<classBuy.length; i++)
+        {
+          classBuy[i].addEventListener(
+          'click', function(e){
+            let itemTitle = this.previousSibling.previousSibling.previousSibling.previousSibling.textContent
+            let num = 1
+            let itemData = {title : itemTitle, quantity : num} 
+
+            if(localStorage.getItem('cart') == null){
+              localStorage.setItem('cart', JSON.stringify([itemData]))
+            }
+            else if(localStorage.getItem('cart') != null){
+              let jsonDataParse = JSON.parse(localStorage.getItem('cart'))
+              let index = jsonDataParse.findIndex(function(data){return data.title === itemData.title})
+              
+              if(index >= 0){
+                jsonDataParse[index].quantity++
+                localStorage.setItem('cart', JSON.stringify(jsonDataParse))
+              }
+              else{
+                jsonDataParse.push(itemData)
+                localStorage.setItem('cart', JSON.stringify(jsonDataParse))
+              }
+            }
+          })
+        }
       </script>
 
 
