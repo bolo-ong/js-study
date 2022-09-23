@@ -66,13 +66,13 @@
       <div style="overflow:hidden">
         <div class="slide-container">
           <div class="slide-box">
-            <img class="cat" src="img/cat1.jpeg">
+            <img class="cat" src="img/cat1.jpeg" draggable="false">
           </div>
           <div class="slide-box">
-            <img class="cat" src="img/cat2.jpeg">
+            <img class="cat" src="img/cat2.jpeg" draggable="false">
           </div>
           <div class="slide-box">
-            <img class="cat" src="img/cat3.jpeg">
+            <img class="cat" src="img/cat3.jpeg" draggable="false">
           </div>
         </div>
       </div>
@@ -175,6 +175,133 @@
           }
         })
       }
+
+      //캐러셀에 스와이프 기능 추가
+      let startPoint = 0
+      let imgIndex = 0
+      let slideIndex = 0
+      let mousedownToggle = false
+      //마우스를 클릭하면, X좌표값을 변수에 저장하고, mousedownToggle을 true로 변경
+      document.querySelector('.slide-container').addEventListener(
+        'mousedown', function(e){
+          startPoint = e.clientX
+          mousedownToggle = true
+        })
+      //마우스 드래그하면, 스와이프 실행
+      document.querySelector('.slide-container').addEventListener(
+        'mousemove', function(e){
+          //마우스 클릭이 true면 실행
+          if(mousedownToggle == true){
+            //첫 이미지에서 오른쪽으로 드래그하면 mousedownToggle을 false로 바꿔서 중지
+            if(imgIndex == 0){
+              if(e.clientX - startPoint > 0){
+                mousedownToggle = false
+              }
+            }
+            //마지막 이미지에서 왼쪽으로 드래그하면 mousedownToggle을 false로 바꿔서 중지
+            if(imgIndex == document.querySelectorAll('.slide-box').length-1){
+              if(e.clientX - startPoint < 0){
+                mousedownToggle = false
+              }
+            }
+            //인덱스 변수를 생성&비교해서 스와이프 기능 작동
+            if(imgIndex == slideIndex){
+              document.querySelector('.slide-container').style.transform = `translateX(-${imgIndex}00vw) translateX(${e.clientX - startPoint}px)`
+            }
+          }
+        })
+      /*마우스를 떼면, e.clientX - startPoint(이동거리)를 비교해서 
+       * 200px이상 이동 시 인덱스--와 다음 이미지로 트랜지션함,
+       * -200px이하 이동 시 인덱스++와 기존 이미지로 트랜지션함
+       */
+      document.querySelector('.slide-container').addEventListener(
+        'mouseup', function(e){
+          mousedownToggle = false
+
+          if(e.clientX - startPoint != 0){
+            if(e.clientX - startPoint >= 200 && imgIndex > 0){                
+              imgIndex--
+              slideIndex--
+            }
+            else if(e.clientX - startPoint <= -200 && imgIndex < document.querySelectorAll('.slide-box').length-1){
+              imgIndex++
+              slideIndex++
+            }
+
+          if(e.clientX - startPoint <= -200 || e.clientX - startPoint >= 200){
+            document.querySelector('.slide-container').style.transform = `translateX(-${imgIndex}00vw)`
+            document.querySelector('.slide-container').style.transition = 'easy-in-out, 1s'
+          }
+          else{
+            document.querySelector('.slide-container').style.transform = `translateX(-${imgIndex}00vw)`
+            document.querySelector('.slide-container').style.transition = 'easy-in-out, 1s'
+          }
+
+          setTimeout(
+            function()
+            {document.querySelector('.slide-container').style.transition = 'none'}, 
+            500)
+        }
+      })
+
+          
+      //캐러셀 스와이프 모바일
+      document.querySelector('.slide-container').addEventListener(
+        'touchstart', function(e){
+          startPoint = e.touches[0].clientX
+          mousedownToggle = true
+        })
+
+      document.querySelector('.slide-container').addEventListener(
+        'touchmove', function(e){
+          if(mousedownToggle == true){
+            if(imgIndex == 0){
+              if(e.touches[0].clientX - startPoint > 0){
+                mousedownToggle = false
+              }
+            }
+            if(imgIndex == document.querySelectorAll('.slide-box').length-1){
+              if(e.touches[0].clientX - startPoint < 0){
+                mousedownToggle = false
+              }
+            }
+            if(imgIndex == slideIndex){
+              document.querySelector('.slide-container').style.transform = `translateX(-${imgIndex}00vw) translateX(${e.touches[0].clientX - startPoint}px)`
+            }
+          }
+        })
+
+      document.querySelector('.slide-container').addEventListener(
+        'touchend', function(e){
+          mousedownToggle = false
+
+          if(e.changedTouches[0].clientX - startPoint != 0){
+            if(e.changedTouches[0].clientX - startPoint >= 200 && imgIndex > 0){                
+              imgIndex--
+              slideIndex--
+            }
+            else if(e.changedTouches[0].clientX - startPoint <= -200 && imgIndex < document.querySelectorAll('.slide-box').length-1){
+              imgIndex++
+              slideIndex++
+            }
+
+          if(e.changedTouches[0].clientX - startPoint <= -200 || e.changedTouches[0].clientX - startPoint >= 200){
+            document.querySelector('.slide-container').style.transform = `translateX(-${imgIndex}00vw)`
+            document.querySelector('.slide-container').style.transition = 'easy-in-out, 1s'
+          }
+          else{
+            document.querySelector('.slide-container').style.transform = `translateX(-${imgIndex}00vw)`
+            document.querySelector('.slide-container').style.transition = 'easy-in-out, 1s'
+          }
+          
+          setTimeout(
+            function()
+            {document.querySelector('.slide-container').style.transition = 'none'}, 
+            500)
+        }
+      })
+        
+
 
       //5초 카운트 다운  
       {let sec = 5

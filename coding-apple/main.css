@@ -76,7 +76,7 @@
 
 .slide-container{
     width: 300vw;
-    transition: ease-in-out 1s;
+    transition: ease-in-out 0.3s;
     display: flex;
     
 }
@@ -85,6 +85,7 @@
     float: left;
     display: flex;
     justify-content: center;
+    background:lightgray
 }
 
 
