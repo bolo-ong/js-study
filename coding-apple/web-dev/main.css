@@ -1,0 +1,115 @@
+body{
+    background: whitesmoke !important;
+}
+
+.section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header{
+    background: black;
+    color:white;
+    padding: 20px;
+}
+
+.header-contents{
+    display: flex;
+    align-items: center;
+}
+
+.header-contents h4, span{
+    padding-right: 20px;
+}
+
+.header-contents span:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: ease-in-out 0.1s;
+    color: white;
+}
+
+.header-contents :nth-child(2){
+    color: white;
+}
+
+.header-contents span{
+    color: grey;
+}
+
+.search{
+    margin: 20px 0px 20px 40px;
+}
+
+.items{
+    margin-left: 40px;
+    display: flex;
+}
+
+.item-box{
+    background-color: white;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.item-wrap{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.item{
+    width: 60%;
+}
+
+.addItem{
+    width: 20%;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: 1px;
+}
+
+.item-box h5, p, button{
+    margin-left: 20px !important;
+}
+
+.item-box :nth-child(3){
+    color: grey;
+}
+
+.item-box :nth-child(5){
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.box-lightgrey{
+    margin: 35px;
+    width: 95%;
+    background-color: lightgrey;
+}
+
+.box-lightgrey :nth-child(1){
+    padding: 40px 0px 10px 30px;
+    font-weight: 500;
+}
+
+.box-lightgrey :nth-child(2){
+    display: flex;
+    justify-content: center;
+}
+
+.box-black{
+    margin-bottom: 20px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    background-color: black;
+    color: white;
+}
