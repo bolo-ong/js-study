@@ -38,17 +38,17 @@ body{
 }
 
 .search{
-    margin: 20px 0px 20px 40px;
+    margin: 20px 0px 20px 50px;
 }
 
 .items{
-    margin-left: 40px;
+    margin: 0px 40px;
     display: flex;
 }
 
 .item-box{
     background-color: white;
-    margin-right: 25px;
+    margin: 0px 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
